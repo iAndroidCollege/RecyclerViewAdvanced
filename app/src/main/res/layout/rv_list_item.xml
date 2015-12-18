@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
     android:orientation="horizontal">
     
     <TextView
@@ -13,7 +15,7 @@
         android:layout_weight="1" />
     
     <Button
-        android:background="@drawable/ic_remove_24dp"
+        android:background="@drawable/btn_remove_selector"
         android:id="@+id/btnRemove"
         android:layout_width="24dp"
         android:layout_height="24dp" />

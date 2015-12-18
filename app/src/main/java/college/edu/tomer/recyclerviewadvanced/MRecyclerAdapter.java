@@ -2,6 +2,7 @@ package college.edu.tomer.recyclerviewadvanced;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,18 @@ import java.util.ArrayList;
 /**
  * Created by Tomer. Licence GPL 3.0.
  */
-public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MViewHolder>{
+public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MViewHolder> implements View.OnClickListener {
 
     /*
-    Private members:
-    */
+        Private members:
+        */
     private ArrayList<String> data;
-
+    private final RecyclerView mRecyclerView;
 
     //Constructor
-    public MRecyclerAdapter(ArrayList<String> data) {
+    public MRecyclerAdapter(ArrayList<String> data, RecyclerView mRecyclerView) {
         this.data = data;
+        this.mRecyclerView = mRecyclerView;
     }
 
 
@@ -31,6 +33,7 @@ public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MVie
     @Override
     public void onBindViewHolder(MViewHolder holder, int position) {
         holder.tvData.setText(data.get(position));
+        Log.d("College", "onBindViewHolder");
     }
 
     @Override
@@ -42,12 +45,34 @@ public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MVie
     //Inflate The Xml into a view and init a viewHolder for findViewByID
     @Override
     public MViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        Log.d("College", "onCreateViewHolder");
         Context ctx = parent.getContext();
         View itemView = LayoutInflater.from(ctx).inflate(R.layout.rv_list_item, parent, false);
-        return new MViewHolder(itemView);
+
+        MViewHolder vHolder = new MViewHolder(itemView);
+        vHolder.btnRemove.setOnClickListener(this);
+        return vHolder;
     }
+
+    public void addNew(String item) {
+        data.add(item);
+        notifyItemInserted(data.size()-1);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        //Remove Item clicked
+       int position =  mRecyclerView.getChildAdapterPosition((View)v.getParent());
+       if (position!=-1){
+           data.remove(position);
+           notifyItemRemoved(position);
+       }
+    }
+
     /**
-     *Find All View by ID Once and for good
+     *Find All Views by ID Once and for good
     **/
     public static class MViewHolder extends RecyclerView.ViewHolder{
         View itemView;
