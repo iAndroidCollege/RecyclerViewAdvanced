@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RecyclerViewAdvanced</string>
+    <string name="action_settings">Settings</string>
+    <string name="et_add">Add...</string>
+</resources>
