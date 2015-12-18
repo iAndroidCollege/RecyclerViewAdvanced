@@ -1,6 +1,7 @@
 package college.edu.tomer.recyclerviewadvanced;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,19 @@ public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MVie
     @Override
     public void onBindViewHolder(MViewHolder holder, int position) {
         holder.tvData.setText(data.get(position));
-        Log.d("College", "onBindViewHolder");
+
+        View itemView = holder.itemView;
+
+
+
+/*        holder.itemView.setScaleX(0);
+        holder.itemView.setScaleY(0);*/
+        //Prep Animation
+        ViewCompat.setScaleX(itemView, 0);
+        ViewCompat.setScaleY(itemView, 0);
+
+        ViewCompat.animate(itemView).scaleX(1).scaleY(1);
+        //ViewCompat.animate(itemView).scaleY(1);
     }
 
     @Override
@@ -57,8 +70,7 @@ public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MVie
 
     public void addNew(String item) {
         data.add(item);
-        notifyItemInserted(data.size()-1);
-
+        notifyItemInserted(data.size());
     }
 
     @Override
