@@ -12,11 +12,10 @@
     tools:context="college.edu.tomer.recyclerviewadvanced.MainActivity"
     tools:showIn="@layout/activity_main">
     <LinearLayout
-        android:id="@+id/addNew"
         android:orientation="horizontal"
+        android:id="@+id/addNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <EditText
             android:hint="@string/et_add"
             android:layout_width="0dp"
@@ -25,16 +24,16 @@
             android:id="@+id/etAdd"
             />
         <Button
+            android:layout_weight="0"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:id="@+id/btnAdd"
-            android:background="@drawable/ic_add_24dp"
+            android:background="@drawable/btn_add_selector"
             />
-
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/addNew"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello World!" />
+        android:id="@+id/mRecycler"/>
 </RelativeLayout>
